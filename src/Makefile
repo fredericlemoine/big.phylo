@@ -65,44 +65,48 @@ phyd:
 	rm -rf PhyDstar	
 
 lsd:
-	echo $(CWD)	
-	git clone https://github.com/tothuhien/lsd-0.3beta.git
-	make -C lsd-0.3beta/src
-	mv $(CWD)/lsd-0.3beta/src/lsd $(EXTERNAL_CODE)/lsd
-	rm -rf lsd-0.3beta	
-	
+	echo $(CWD)
+	wget https://github.com/tothuhien/lsd-0.3beta/archive/master.zip
+	unzip master.zip
+	make -C lsd-0.3beta-master/src
+	mv $(CWD)/lsd-0.3beta-master/src/lsd $(EXTERNAL_CODE)/lsd
+	rm -rf lsd-0.3beta-master master.zip
+
 ExaML-raxml:
-	echo $(CWD)	
-	git clone https://github.com/stamatak/standard-RAxML.git
-	make -C standard-RAxML -f Makefile.SSE3.gcc
-	mv $(CWD)/standard-RAxML/raxmlHPC-SSE3 $(EXTERNAL_CODE)/ExaML-raxml
-	rm -rf standard-RAxML	
-	
+	echo $(CWD)
+	wget https://github.com/stamatak/standard-RAxML/archive/master.zip
+	unzip master.zip
+	make -C standard-RAxML-master -f Makefile.SSE3.gcc
+	mv $(CWD)/standard-RAxML-master/raxmlHPC-SSE3 $(EXTERNAL_CODE)/ExaML-raxml
+	rm -rf standard-RAxML-master master.zip
+
 EXAML-parsimonator:	
 	echo $(CWD)
-	git clone https://github.com/stamatak/Parsimonator-1.0.2.git
-	make -C Parsimonator-1.0.2 -f Makefile.SSE3.gcc
-	mv $(CWD)/Parsimonator-1.0.2/parsimonator-SSE3 $(EXTERNAL_CODE)/ExaML-parsimonator 	
-	rm -rf Parsimonator-1.0.2
-	
+	wget https://github.com/stamatak/Parsimonator-1.0.2/archive/master.zip
+	unzip master.zip
+	make -C Parsimonator-1.0.2-master -f Makefile.SSE3.gcc
+	mv $(CWD)/Parsimonator-1.0.2-master/parsimonator-SSE3 $(EXTERNAL_CODE)/ExaML-parsimonator 	
+	rm -rf Parsimonator-1.0.2-master master.zip
+
 examl:	
-	echo $(CWD)	
-	git clone https://github.com/stamatak/ExaML.git
-	make -C ExaML/parser -f Makefile.SSE3.gcc
-	mv $(CWD)/ExaML/parser/parse-examl $(EXTERNAL_CODE)/ExaML-parser
-	make -C ExaML/examl -f Makefile.SSE3.gcc
-	mv $(CWD)/ExaML/examl/examl $(EXTERNAL_CODE)/ExaML-examl
-	rm -rf ExaML
+	echo $(CWD)
+	wget https://github.com/stamatak/ExaML/archive/master.zip
+	unzi master.zip
+	make -C ExaML-master/parser -f Makefile.SSE3.gcc
+	mv $(CWD)/ExaML-master/parser/parse-examl $(EXTERNAL_CODE)/ExaML-parser
+	make -C ExaML-master/examl -f Makefile.SSE3.gcc
+	mv $(CWD)/ExaML-master/examl/examl $(EXTERNAL_CODE)/ExaML-examl
+	rm -rf ExaML-master master.zip
 	mv $(EXTERNAL_CODE)/ExaML-examl $(EXTERNAL_CODE)/examl
-	
+
 make misc:	
 	mkdir -p $(MISC_CODE)
 	cp ../misc/*.R $(MISC_CODE)
-	
+
 make roxygen:
 	echo $(CWD)
 	Rscript ../misc/startme.R -exe=ROXYGENIZE -code.home=$(CWD)/..
-	
+
 make rdata:
 	echo $(CWD)
 	Rscript ../misc/startme.R -exe=MAKE.RDATA -code.home=$(CWD)/..	
