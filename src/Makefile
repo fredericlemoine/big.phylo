@@ -91,7 +91,7 @@ EXAML-parsimonator:
 examl:	
 	echo $(CWD)
 	wget https://github.com/stamatak/ExaML/archive/master.zip
-	unzi master.zip
+	unzip master.zip
 	make -C ExaML-master/parser -f Makefile.SSE3.gcc
 	mv $(CWD)/ExaML-master/parser/parse-examl $(EXTERNAL_CODE)/ExaML-parser
 	make -C ExaML-master/examl -f Makefile.SSE3.gcc
